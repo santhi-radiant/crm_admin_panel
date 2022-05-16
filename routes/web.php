@@ -37,8 +37,14 @@ Route::group([
     Route::get('/home', 'UsersHomeController@index')->name('home');
 });
 
-Route::get('/home', [HomeController::class,'index'])->name('home');
-Route::get('/profile/{id}', [App\Http\Controllers\admin\ProfileController::class, 'profile'])->name('profile');
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    'namespace' => 'admin',
+    'middleware' => ['auth']
+], function () {
+    Route::get('/home', [HomeController::class,'index'])->name('home');
+    Route::get('/profile/{id}', [App\Http\Controllers\admin\ProfileController::class, 'profile'])->name('profile');
 
 Route::controller(App\Http\Controllers\admin\UsersController::class)->group(function(){
     Route::get('/users', 'index')->name('users');
@@ -78,6 +84,6 @@ Route::controller(App\Http\Controllers\admin\TasksController::class)->group(func
 });
 
 
-
+});
 
 require __DIR__.'/auth.php';
