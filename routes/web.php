@@ -11,7 +11,7 @@ use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\admin\ProjectsController;
 use App\Http\Controllers\admin\TasksController;
 
-use App\Http\Controllers\users\HomeController as UsersHomeController;
+use App\Http\Controllers\users\UsersHomeController;
 use App\Models\Client;
 use App\Models\User;
 /*
@@ -29,21 +29,18 @@ Route::get('/',function(){
 return view('welcome');
 });
 Route::group([
-    'prefix' => 'user',
-    'as' => 'user.',
-    'namespace' => 'User',
-    'middleware' => ['auth']
+
+      'middleware' => ['auth']
 ], function () {
-    Route::get('/home', 'UsersHomeController@index')->name('home');
+    Route::get('/home',[App\Http\Controllers\users\UsersHomeController::class,'index'])->name('home');
 });
 
+
 Route::group([
-    'prefix' => 'admin',
-    'as' => 'admin.',
-    'namespace' => 'admin',
+
     'middleware' => ['auth']
 ], function () {
-    Route::get('/home', [HomeController::class,'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\admin\HomeController::class,'index'])->name('home');
     Route::get('/profile/{id}', [App\Http\Controllers\admin\ProfileController::class, 'profile'])->name('profile');
 
 Route::controller(App\Http\Controllers\admin\UsersController::class)->group(function(){
