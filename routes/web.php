@@ -29,7 +29,7 @@ Route::get('/',function(){
 return view('welcome');
 });
 Route::group([
-
+    'namespace' => 'users',
       'middleware' => ['auth']
 ], function () {
     Route::get('/home',[App\Http\Controllers\users\UsersHomeController::class,'index'])->name('home');
@@ -37,7 +37,7 @@ Route::group([
 
 
 Route::group([
-
+    'namespace' => 'admin',
     'middleware' => ['auth']
 ], function () {
     Route::get('/home', [App\Http\Controllers\admin\HomeController::class,'index'])->name('home');
