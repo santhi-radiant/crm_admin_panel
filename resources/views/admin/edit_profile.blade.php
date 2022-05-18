@@ -7,7 +7,7 @@
 
     <div class="panel-body" style="padding-left: 1cm">
                 <form method="POST" name="profile-edit" action="{{route('profile.update',['id'=>$user->id])}}" enctype="multipart/form-data">
-                    @method('PUT')
+                    
                     @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -21,7 +21,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <img src="{{$user->getFirstMediaUrl('uploads')}}"  width="120px">
+                               
                                 Photo <input type="file" name="photo" value="{{$user->photo}}"class="form-control">
                             </div>
                         </div>

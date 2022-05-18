@@ -20,38 +20,14 @@ class ProfileController extends Controller
     public function profile()
     {
         $user=User::where('id',Auth::user()->id)->first();
-        return view('admin.profile',['user'=>$user]);
+        return view('user.profile',['user'=>$user]);
 
 
     }
     public function edit_profile($id)
     {
         $user=User::where('id',Auth::user()->id)->first();
-        return view('admin.edit_profile',['user'=>$user]);
-
-    }
-
-    public function update_profile(Request $request,$id)
-    {
-         
-        $user=User::where('id',$id)->first();
-        $user->name=$request->input('name');
-        $user->email=$request->input('email');
-        if($request->hasFile('photo') && $request->file('photo')->isValid())
-        {
-            $user->addMediaFromRequest('photo')->toMediaCollection();
-
-        }
-        
-        $user->save();
-        return redirect()->route('profile',['id'=>$id])->with('success', 'Your Profile Successfully Updated !!');
-
-    }
-    public function destroy_profile($id)
-    {
-
-        User::where('id',$id)->delete();
-        return redirect()->route('profile')->with('success', 'Profile Successfully Deleted !!');
+        return view('user.edit_profile',['user'=>$user]);
 
     }
     /**

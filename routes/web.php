@@ -37,11 +37,19 @@ Route::group([
 
 
 Route::group([
-    'namespace' => 'admin',
+
     'middleware' => ['auth']
 ], function () {
     Route::get('/home', [App\Http\Controllers\admin\HomeController::class,'index'])->name('home');
-    Route::get('/profile/{id}', [App\Http\Controllers\admin\ProfileController::class, 'profile'])->name('profile');
+
+Route::controller(App\Http\Controllers\admin\ProfileController::class)->group(function(){
+    Route::get('/profile/{id}','profile')->name('profile');
+    Route::get('profile/edit_profile/{id}','edit_profile')->name('profile.edit');
+    Route::post('/update_profile/{id}','update_profile')->name('profile.update');
+    Route::get('/destroy_profile/{id}','destroy_profile')->name('profile.destroy');
+
+});
+
 
 Route::controller(App\Http\Controllers\admin\UsersController::class)->group(function(){
     Route::get('/users', 'index')->name('users');

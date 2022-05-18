@@ -13,10 +13,10 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     use HasApiTokens, HasFactory, Notifiable,HasRoles;
-
+    use InteractsWithMedia;
     /**
      * The attributes that are mass assignable.
      *

@@ -15,7 +15,7 @@
         <tr style="background-color:rgb(236, 234, 234);">
             <td><b>Name</b></td>
             <td><b>Email</b></td>
-
+            <td><b>Profile Photo</b></td>
 
             <td colspan="2"><b>Action</b></td>
         </tr>
@@ -24,9 +24,10 @@
     <tr>
         <td>{{$user->name}}</td>
         <td>{{$user->email}}</td>
+        <td><img src="{{$user->getFirstMediaUrl()}}" width="100px" height="100px"></td>
         <td colspan="2">
-            <a href="#">Edit Profile</a>
-            |<a href="#">Delete Profile</a></td>
+            <a href="edit_profile/{{$user->id}}">Edit Profile</a>
+            |<a href="destroy_profile/{{$user->id}}">Delete Profile</a></td>
     </tr>
 
 
