@@ -34,21 +34,19 @@
         <td>{{$task->duration}}</td>
         <td>{{$task->created_at}}</td>
         <td>{{$task->updated_at}}</td>
+        <td>{{$task->project->title}} </td>
+        <td>{{$task->user->name}}</td>
+        <td>{{$task->client->company}}</td>
+        <td></td>
 
-          @if($task->projects != null)
-        @foreach ($task->projects as $project )
-        <td> {{$project->title}} </td>
-        <td>{{$assigned_user}}</td>
-        <td>{{$assigned_client}}</td>
-        @endforeach
-        @endif
-         
+
+
         <td colspan="2"><a href="edit_task/{{$task->id}}">Edit</a>
 
             | <a href="destroy_task/{{$task->id}}">Delete</a>
 
            </td>
-          
+
     </tr>
     @endforeach
 

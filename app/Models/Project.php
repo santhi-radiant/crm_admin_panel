@@ -12,4 +12,12 @@ class Project extends Model
     {
         return $this->hasmany(Task::class,'taskables');
     }
+    public function client()
+    {
+        return $this->hasOne(Client::class,'id');
+    }
+    public function user()
+    {
+        return $this->hasOne(User::class,'id');
+    }
 }

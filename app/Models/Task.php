@@ -8,16 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     use HasFactory;
-    public function projects()
+    public function project()
     {
-        return $this->belongsToMany(Project::class,'taskables')->withPivot('project_id');
+        return $this->belongsTo(Project::class,'id');
     }
-    public function clients()
+    public function client()
     {
-        return $this->hasOne(Client::class);
+        return $this->hasOne(Client::class,'id');
     }
-    public function users()
+    public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(User::class,'id');
     }
 }

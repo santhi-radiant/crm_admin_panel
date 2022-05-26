@@ -29,8 +29,9 @@
         <td>{{$project->title}}</td>
         <td>{{$project->description}}</td>
         <td>{{$project->deadline}}</td>
-        <td>{{$assigned_user}}</td>
-        <td>{{$assigned_client}}</td>
+
+        <td>{{$project->user->name}}</td>
+        <td>{{$project->client->company}}</td>
         <td>{{$project->status}}</td>
          @hasrole('Admin')
         <td colspan="2"><a href="edit_project/{{$project->id}}">Edit</a>

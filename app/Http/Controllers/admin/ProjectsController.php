@@ -22,13 +22,9 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects=Project::paginate(10);
-        foreach ($projects as $project) {
-            $assigned_client=Client::where('id',$project->client_id)->value('company');
-            $assigned_user=User::where('id',$project->user_id)->value('name'); 
-        }
-        
-        return view('admin.projects',compact('projects','assigned_client','assigned_user'));
+        $projects=Project::with('client','user')->paginate(10);
+
+        return view('admin.projects',compact('projects'));
     }
 
     /**

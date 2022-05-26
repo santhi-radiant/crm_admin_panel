@@ -34,9 +34,9 @@
                         <div class="col-md-6">
                             Assigned Project<select name="assigned_project" class="form-control" >
                                 <option selected disabled>select Project</option>
-                                @foreach ($task->projects as  $project)
-                                <option value="{{$project->id}}" @if ($project->id==$project->id) selected @endif>{{$project->title}}</option>
-                                @endforeach
+
+                                <option value="{{$task->project->id}}"  selected>{{$task->project->title}}</option>
+
                                 </select>
                         </div>
                     </div>

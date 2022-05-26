@@ -26,20 +26,10 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks=Task::with('projects')->get();
-      
+        $tasks=Task::with('project','user','client')->get();
 
-        foreach($tasks as $task)
-        {
-            foreach($task->projects as $project)
-            {
-        $assigned_user=User::where('id',$project->user_id)->value('name');
-        $assigned_client=Client::where('id',$project->client_id)->value('company');
-            }
-        }
-               
-        return view('admin.tasks',['tasks'=>$tasks,'assigned_user'=>$assigned_user,'assigned_client'=>$assigned_client]);
-      
+        return view('admin.tasks',compact(['tasks']));
+
     }
 
     /**
@@ -95,7 +85,7 @@ class TasksController extends Controller
     public function edit($id)
     {
 
-        $task=Task::with('projects')->where('id',$id)->first();
+        $task=Task::with('project')->where('id',$id)->first();
         return view('admin.edit_task', compact(['task']));
     }
 
